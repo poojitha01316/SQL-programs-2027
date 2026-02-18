@@ -1,0 +1,8 @@
+SELECT product_id, product_name, description
+FROM products
+WHERE description LIKE '%SN____-____%'
+AND (
+    LOCATE('SN', description) = 0
+    OR SUBSTRING(description, LOCATE('SN', description) + 11, 1) NOT BETWEEN '0' AND '9'
+)
+ORDER BY product_id;
